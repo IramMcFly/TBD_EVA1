@@ -1,0 +1,153 @@
+
+C:\Users\iramb>mysqlsh
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 18
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use
+information_schema  performance_schema  sys                 world
+mysql               sakila              tbd_eva1
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva1
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > quit
+                                         -> ;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'quit' at line 1
+ MySQL  localhost:3306 ssl  tbd_... SQL > \quit
+Bye!
+
+C:\Users\iramb>mysqlsh
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.Your MySQL connection id is 19
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > create database Employee
+                               -> ;
+Query OK, 1 row affected (0.0539 sec)     ^C
+ MySQL  localhost:3306 ssl  employee  SQL > eate table employee
+ MySQL  localhost:3306 ssl  employee  SQL > ^Cte table employees
+ MySQL  localhost:3306 ssl  employee  SQL > ployee` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  employee  SQL >
+ MySQL  localhost:3306 ssl  employee  SQL > eate table employees
+ MySQL  localhost:3306 ssl  employee  SQL >
+ MySQL  localhost:3306 ssl  employee  SQL >
+ MySQL  localhost:3306 ssl  employee  SQL >
+ MySQL  localhost:3306 ssl  employee  SQL > create table employees(
+                                         -> EEID int AUTO_INCREMENT key,
+                                         -> full_name varchar(30) not NULL,
+                                         -> Gender enum("Male","Female","Other"),
+                                         -> ethnicity varchar(30),
+                                         -> age int not NULL,
+                                         -> Station_ID varchar(3) not NULL,
+                                         -> SalaryID varchar(4) not null)
+                                         -> ;
+Query OK, 0 rows affected (0.1337 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > create table hirexit(
+                                         -> HIR_ID int AUTO_INCREMENT key,
+                                         -> EEID int
+AS                          ENGINE_ATTRIBUTE            SECONDARY_ENGINE_ATTRIBUTE
+AUTO_INCREMENT              GENERATED ALWAYS            SERIAL DEFAULT VALUE
+CHECK                       INVISIBLE                   SIGNED
+COLLATE                     KEY                         SRID
+COLUMN_FORMAT               NOT                         STORAGE
+COMMENT                     NULL                        UNIQUE
+CONSTRAINT                  ON UPDATE NOW               UNSIGNED
+DEFAULT                     PRIMARY                     VISIBLE
+ENFORCED                    REFERENCES                  ZEROFILL
+                                         -> EEID int,
+                                         -> HireDate date not NULL,
+                                         -> ExitDate date)
+                                         -> ;
+Query OK, 0 rows affected (0.0674 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > create table station(
+                                         -> StationID int AUTO_INCREMENT KEY,
+                                         -> country varchar(30) not NULL,
+                                         -> city varchar(30) not null)
+                                         -> ;
+Query OK, 0 rows affected (0.0567 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > create table SALARYES(
+                                         -> SalaryID int AUTO_INCREMENT KEY,
+                                         -> annualSalary double not NULL,
+                                         -> bonus int,
+                                         -> EEID int);
+Query OK, 0 rows affected (0.0548 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| employees          |
+| hirexit            |
+| salaryes           |
+| station            |
++--------------------+
+4 rows in set (0.0564 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > desc tables;
+ERROR: 1146 (42S02): Table 'employee.tables' doesn't exist
+ MySQL  localhost:3306 ssl  employee  SQL > desc *;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*' at line 1
+ MySQL  localhost:3306 ssl  employee  SQL > desc * from employee;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from employee' at line 1
+ MySQL  localhost:3306 ssl  employee  SQL > desc employees;
++------------+-------------------------------+------+-----+---------+----------------+
+| Field      | Type                          | Null | Key | Default | Extra          |
++------------+-------------------------------+------+-----+---------+----------------+
+| EEID       | int                           | NO   | PRI | NULL    | auto_increment |
+| full_name  | varchar(30)                   | NO   |     | NULL    |                |
+| Gender     | enum('Male','Female','Other') | YES  |     | NULL    |                |
+| ethnicity  | varchar(30)                   | YES  |     | NULL    |                |
+| age        | int                           | NO   |     | NULL    |                |
+| Station_ID | varchar(3)                    | NO   |     | NULL    |                |
+| SalaryID   | varchar(4)                    | NO   |     | NULL    |                |
++------------+-------------------------------+------+-----+---------+----------------+
+7 rows in set (0.0489 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > desc hirexit;
++----------+------+------+-----+---------+----------------+
+| Field    | Type | Null | Key | Default | Extra          |
++----------+------+------+-----+---------+----------------+
+| HIR_ID   | int  | NO   | PRI | NULL    | auto_increment |
+| EEID     | int  | YES  |     | NULL    |                |
+| HireDate | date | NO   |     | NULL    |                |
+| ExitDate | date | YES  |     | NULL    |                |
++----------+------+------+-----+---------+----------------+
+4 rows in set (0.0029 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > desc salaryes;
++--------------+--------+------+-----+---------+----------------+
+| Field        | Type   | Null | Key | Default | Extra          |
++--------------+--------+------+-----+---------+----------------+
+| SalaryID     | int    | NO   | PRI | NULL    | auto_increment |
+| annualSalary | double | NO   |     | NULL    |                |
+| bonus        | int    | YES  |     | NULL    |                |
+| EEID         | int    | YES  |     | NULL    |                |
++--------------+--------+------+-----+---------+----------------+
+4 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  employee  SQL > desc station;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| StationID | int         | NO   | PRI | NULL    | auto_increment |
+| country   | varchar(30) | NO   |     | NULL    |                |
+| city      | varchar(30) | NO   |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+3 rows in set (0.0026 sec)
+ MySQL  localhost:3306 ssl  employee  SQL >
