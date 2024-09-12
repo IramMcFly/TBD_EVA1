@@ -1,0 +1,220 @@
+Microsoft Windows [Versión 10.0.19045.4780]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\iramb>mysqlsh
+MySQL Shell 8.0.38
+
+Copyright (c) 2016, 2024, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 15
+Server version: 8.0.39 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > use tbd_eva1
+Default schema set to `tbd_eva1`.
+Fetching global names, object names from `tbd_eva1` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table tv(
+                                         -> id int key,
+                                         -> marca varchar(50) not NULL,
+                                         -> modelo varchar(50) NOT NULL,
+                                         -> tamano int not null,
+                                         -> tipo_pantalla varchar(30));
+Query OK, 0 rows affected (0.1227 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc tv;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| id            | int         | NO   | PRI | NULL    |       |
+| marca         | varchar(50) | NO   |     | NULL    |       |
+| modelo        | varchar(50) | NO   |     | NULL    |       |
+| tamano        | int         | NO   |     | NULL    |       |
+| tipo_pantalla | varchar(30) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.0479 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv(tipo)
+                                         -> value ("LED");
+ERROR: 1054 (42S22): Unknown column 'tipo' in 'field list'
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv(tipo_pantalla) value ("LED");
+ERROR: 1364 (HY000): Field 'id' doesn't have a default value
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv(
+information_schema  sakila              sys                 VALUES              world
+mysql               SELECT              TABLE               vehicle
+performance_schema  student             tbd_eva1            WITH
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv value (
+Display all 442 possibilities? (y or n)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv (id,marca,modelo,tamano)
+                                         -> value(5,"Sony","Bravia",45);
+Query OK, 1 row affected (0.0394 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv value(2,"LG","webOS",75,"OLED");
+Query OK, 1 row affected (0.0037 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select COUNT(*) from tv
+                                         -> ;
++----------+
+| COUNT(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.0559 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select* from tv ;
++----+-------+--------+--------+---------------+
+| id | marca | modelo | tamano | tipo_pantalla |
++----+-------+--------+--------+---------------+
+|  2 | LG    | webOS  |     75 | OLED          |
+|  5 | Sony  | Bravia |     45 | NULL          |
++----+-------+--------+--------+---------------+
+2 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into tv (id,marca,modelo,tamano) value(1,"Sony","Bravia",100);
+Query OK, 1 row affected (0.0368 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select* from tv ;
++----+-------+--------+--------+---------------+
+| id | marca | modelo | tamano | tipo_pantalla |
++----+-------+--------+--------+---------------+
+|  1 | Sony  | Bravia |    100 | NULL          |
+|  2 | LG    | webOS  |     75 | OLED          |
+|  5 | Sony  | Bravia |     45 | NULL          |
++----+-------+--------+--------+---------------+
+3 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc tv;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| id            | int         | NO   | PRI | NULL    |       |
+| marca         | varchar(50) | NO   |     | NULL    |       |
+| modelo        | varchar(50) | NO   |     | NULL    |       |
+| tamano        | int         | NO   |     | NULL    |       |
+| tipo_pantalla | varchar(30) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+5 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table peliculas(
+                                         -> id int AUTO_INCREMENT key,
+                                         -> titulo varchar(30) not NULL,
+                                         -> genero var
+VARBINARY     VARCHAR       VARCHARACTER
+                                         -> genero VARCHAR(30) not NULL,
+                                         -> clasificacion VARCHAR(5) not NULL);
+Query OK, 0 rows affected (0.0617 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc peliculas;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| titulo        | varchar(30) | NO   |     | NULL    |                |
+| genero        | varchar(30) | NO   |     | NULL    |                |
+| clasificacion | varchar(5)  | NO   |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas(titulo, genero, clasificacion)
+                                         -> value("Caroline","Terror","PG13");
+Query OK, 1 row affected (0.0089 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > select * from peliculas
+                                         -> ;
++----+----------+--------+---------------+
+| id | titulo   | genero | clasificacion |
++----+----------+--------+---------------+
+|  1 | Caroline | Terror | PG13          |
++----+----------+--------+---------------+
+1 row in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas(titulo, genero, clasificacion)
+                                         -> value ("titanic","comedia","PG13");
+Query OK, 1 row affected (0.0377 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas(titulo, genero, clasificacion)
+                                         -> ^C
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas value (3,"Sharknedo","Drama","PG13");
+Query OK, 1 row affected (0.0428 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * FROM peliculas;
++----+-----------+---------+---------------+
+| id | titulo    | genero  | clasificacion |
++----+-----------+---------+---------------+
+|  1 | Caroline  | Terror  | PG13          |
+|  2 | titanic   | comedia | PG13          |
+|  3 | Sharknedo | Drama   | PG13          |
++----+-----------+---------+---------------+
+3 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas value (2,"Sharknedo","Drama","PG13");
+ERROR: 1062 (23000): Duplicate entry '2' for key 'peliculas.PRIMARY'
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas(titulo, genero, clasificacion) value ("titanic 2","comedia","PG13");
+Query OK, 1 row affected (0.0377 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * FROM peliculas;
++----+-----------+---------+---------------+
+| id | titulo    | genero  | clasificacion |
++----+-----------+---------+---------------+
+|  1 | Caroline  | Terror  | PG13          |
+|  2 | titanic   | comedia | PG13          |
+|  3 | Sharknedo | Drama   | PG13          |
+|  4 | titanic 2 | comedia | PG13          |
++----+-----------+---------+---------------+
+4 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas value (20,"La jaiba","Romance","M18");
+Query OK, 1 row affected (0.0377 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into peliculas(titulo, genero, clasificacion) value ("La Jaiba 2","comedia","M18");
+Query OK, 1 row affected (0.0378 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * FROM peliculas;
++----+------------+---------+---------------+
+| id | titulo     | genero  | clasificacion |
++----+------------+---------+---------------+
+|  1 | Caroline   | Terror  | PG13          |
+|  2 | titanic    | comedia | PG13          |
+|  3 | Sharknedo  | Drama   | PG13          |
+|  4 | titanic 2  | comedia | PG13          |
+| 20 | La jaiba   | Romance | M18           |
+| 21 | La Jaiba 2 | comedia | M18           |
++----+------------+---------+---------------+
+6 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > show tables;
++--------------------+
+| Tables_in_tbd_eva1 |
++--------------------+
+| peliculas          |
+| student            |
+| tv                 |
+| vehicle            |
++--------------------+
+4 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > create table mascota( id int AUTO_INCREMENT key, nombre varchar(30) not NULL, especie VARCHAR(30) not NULL, raza VARCHAR(30), dueno VARCHAR(30) not NULL);
+Query OK, 0 rows affected (0.0533 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > desc mascota;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int         | NO   | PRI | NULL    | auto_increment |
+| nombre  | varchar(30) | NO   |     | NULL    |                |
+| especie | varchar(30) | NO   |     | NULL    |                |
+| raza    | varchar(30) | YES  |     | NULL    |                |
+| dueno   | varchar(30) | NO   |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+5 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into mascota (nombre,especie,raza,dueno) value("Puppy","Perro","Corgi","Felipe Drugovich");
+Query OK, 1 row affected (0.0400 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into mascota (nombre,especie,dueno) value("Chuy","Perro","Felipe Drugovich");
+Query OK, 1 row affected (0.0370 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * from mascotas
+                                         -> ;
+ERROR: 1146 (42S02): Table 'tbd_eva1.mascotas' doesn't exist
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * from mascota;
++----+--------+---------+-------+------------------+
+| id | nombre | especie | raza  | dueno            |
++----+--------+---------+-------+------------------+
+|  1 | Puppy  | Perro   | Corgi | Felipe Drugovich |
+|  2 | Chuy   | Perro   | NULL  | Felipe Drugovich |
++----+--------+---------+-------+------------------+
+2 rows in set (0.0005 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into mascota value(1,"Chuy","Perro","Felipe Drugovich");
+ERROR: 1136 (21S01): Column count doesn't match value count at row 1
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > insert into mascota value(5,"Charles","Gato","Naranjoso","Fernando Alonso");
+
+Query OK, 1 row affected (0.0452 sec)
+ MySQL  localhost:3306 ssl  tbd_eva1  SQL > SELECT * from mascota;
++----+---------+---------+-----------+------------------+
+| id | nombre  | especie | raza      | dueno            |
++----+---------+---------+-----------+------------------+
+|  1 | Puppy   | Perro   | Corgi     | Felipe Drugovich |
+|  2 | Chuy    | Perro   | NULL      | Felipe Drugovich |
+|  5 | Charles | Gato    | Naranjoso | Fernando Alonso  |
++----+---------+---------+-----------+------------------+
